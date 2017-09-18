@@ -1,9 +1,14 @@
 import React from "react";
 
-function Header(){
+import { Link } from 'react-router-dom';
+
+function Header(props){
   return (
-    <h1>Help Queue!</h1>
-  );
+    <div>
+      <h1>Help Queue</h1>
+      <Link to="/">Home</Link> | <Link to="/admin">Admin</Link>
+    </div>
+   );
 }
 
 export default Header;
