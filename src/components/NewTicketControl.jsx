@@ -13,7 +13,7 @@ class NewTicketControl extends React.Component {
       formModalIsShowing: false
     };
   }
-  
+
 
   showFormModal() {
     this.setState({formModalIsShowing: true});
@@ -28,7 +28,7 @@ class NewTicketControl extends React.Component {
       return (
         <div>
           <Button
-            block="true"
+            block
             bsStyle="primary"
             bsSize="large"
             onClick={this.showFormModal}>
@@ -43,7 +43,6 @@ class NewTicketControl extends React.Component {
              </Modal.Header>
              <Modal.Body>
                <NewTicketForm
-                onNewTicketCreation={this.props.onNewTicketCreation}
                 hideFormAfterSubmission = {this.hideFormModal}/>
              </Modal.Body>
            </Modal>
@@ -52,8 +51,5 @@ class NewTicketControl extends React.Component {
     }
 }
 
-NewTicketControl.propTypes = {
-  onNewTicketCreation: PropTypes.func
-}
 
 export default NewTicketControl;

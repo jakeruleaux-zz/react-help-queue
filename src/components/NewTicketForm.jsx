@@ -1,21 +1,36 @@
 import React from "react";
-import Ticket from "../models/Ticket.js";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import c from './../constants';
+import { v4 } from 'uuid';
+
 
 class NewTicketForm extends React.Component {
 
   constructor(props){
     super(props);
+
     this.handleNewTicketFormSubmission = this.handleNewTicketFormSubmission.bind(this);
   }
 
   handleNewTicketFormSubmission(event) {
-    event.preventDefault()
+    event.preventDefault();
     const { _names, _location, _issue } = this.refs;
-    var newTicket = new Ticket(_names.value, _location.value, _issue.value);
-    this.props.onNewTicketCreation(newTicket);
+    const { dispatch } = this.props;
+    const action = {
+      type: c.ADD_TICKET,
+      id: v4(),
+      names: _names.value,
+      location: _location.value,
+      description: _issue.value,
+      timeOpened: new Date().getTime()
+    }
+    console.log(action.id);
+    dispatch(action);
     this.props.hideFormAfterSubmission();
   }
+
+
 
   render(){
     return (
@@ -44,8 +59,9 @@ class NewTicketForm extends React.Component {
 }
 
 NewTicketForm.propTypes = {
-  onNewTicketCreation: PropTypes.func,
   hideFormAfterSubmission: PropTypes.func
 }
+
+NewTicketForm = connect()(NewTicketForm);
 
 export default NewTicketForm;
