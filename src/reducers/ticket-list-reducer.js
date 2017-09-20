@@ -5,14 +5,17 @@ export default (state = [], action) => {
       return [
         ...state,
         {
-          names: names,
-          location: location,
-          description: description,
-          timeOpened: timeOpened,
+          names : names,
+          location : location,
+          description : description,
+          timeOpened : timeOpened,
           id: id
         }
       ]
-      default:
-        return state;
+    case 'CLOSE_TICKET':
+    return
+
+    default:
+      return state;
   }
 }
